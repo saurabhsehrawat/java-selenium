@@ -1,0 +1,209 @@
+https://rahulshettyacademy.com/AutomationPractice/
+https://www.rahulshettyacademy.com/seleniumPractise/
+
+Initial lines:
+System.setProperty("webdriver.chrome.driver","E://Drivers//chrome.exe");
+Similarly, webdriver.gecko.driver for FF, webdriver.ie.driver for IE, webdriver.edge.driver for EDGE, webdriver.safari.driver for Safari
+Now, create driver reference
+WebDriver dr=new ChromeDriver();
+WebElement we=dr.findElement()...
+
+Methods of WebDriver.....
+1) get(): hits URL in browser ex get("http://www.facebook.com")
+2) getTitle(): gets browser title
+3) getCurrentUrl(): gets current page URL from address bar
+4) navigate().back(); : go back to page
+5) navigate.forward(); : go to next page
+6) close(): closes current browser window
+7) quit(): closes current and child windows of browser opened while running script
+
+
+Locators in Selenium:
+ID
+className
+Name
+linkText
+partialLinkText
+Xpath
+Css Selector
+Right click any object and inspect element
+
+
+dr.findElement(By.id("xyz")).sendKeys("abc"); sendKeys enter data in the field
+dr.findElement(My.name("xyz")).click(); click() clicks the button
+
+Notes:
+1) alpha numeric id may vary everytime or on browser refresh so try not to use id that time....ex u_o_7
+2) every object may not have id, name or classname, that time you should use xpath or css
+3) linkText must be used where <a> anchor href is there.
+4) ClassName should not be used when it has space such as class="input r8 v5 yes" Compound classes are not accepted
+5) Selenium scans from top left, enters in first match found if 2 attributes ex name are same
+6) Finding xpath: inspect element, right click on blue highlighted line, go to copy and select xpath, paste it in notepad, replace all double quates "" with single quaote '. Xpath may be different from browser to browser but NOT an issue.
+7) Double quotes inside double quotes is not accepted to we change to single quote, also xpath can be defined in n no of ways.
+8) Firepath depreciated from FF 56.0
+9) In FF, Xpath starting from /html is unreliable, change to chrome to browser and pick up xpath.
+10) Xpath/CSS can be defined in n no of ways and can vary from browser to browser.
+11) There is no direct way to get CSS in chrome. Selecting CSS: Right click blue highlighted text, goto copy and select CSS selector, this way in FF.
+
+In chrome, CSS can be find in bottom toolbar, or copy--> copy selector may also work.
+
+Validating Xpath and CSS
+For Xpath: extract xpath and put it in $x(""), go to console in developer tools and paste below and hit enter, desired area get highlighted
+For CSS: extract CSS and put it in $(""), go to console in developer tools and paste below and hit enter, desired area get highlighted
+
+Writing your own Xpath
+Inspect element, copy Outer HTML full line code(blue highlighted), create Xpath as //tagName[@attribute='value']
+suppose say tagnames keep changing, then //*[@attribute='value'] ex //input[@type='email'] or //*[@type='email'], * accepts looks for any tag name with attribute TYPE and value EMAIL
+
+Writing your own CSS
+Inspect element, copy Outer HTML full line code(blue highlighted), create CSS as tagName[attribute='value']
+in xpath we give *, in CSS we can leave it blank ex [attribute='value']
+Another way to write CSS, 2) tagName#id 3) tagName.classname
+browser gives this syntax, tagName#id where tagName is blank, browser returns #id.
+if class name has spaces then for writing CSS, remove spaces and write dot.
+
+Regular Expression-Xpath and CSS
+Xpath      //tagname[contains(@attribute,'matching value not exact one')]
+Css        tagName[attribute*='value'],, it means value is no exact match
+
+Parent Child Xpath
+When there is nothing unique in child xpath, then make Xpath from parent and traverse the tag names.
+ex: //input[@type='email']/div/div/div[2]/div/input
+//div[@jscontroller='mvYTse']/div/div/div[2]/input
+
+Traversing between siblings..xpath
+//input[@attritute='value']/following-sibling::li[3]                li[3] is sibling tag name
+If parent is dynamic, and there is no child and second sibling is dynamic, then write xpath of first one and /following-sibling::li[2] where li[2] is second sibling (next to next) which is dynamic
+
+driver.manage().window().fullscreen();
+driver.manage().window().maximize();
+
+Traversing from child to parent using xpath
+//input[@attritute='value']/parent::ul                        ul is parent tag name
+If parent is dynamic and keep changing, parent is just above node 
+
+
+Creating xpath without seeing source code using just Text from webpage
+//*[text()=' Selenium ']      considering Selenium has gap before and after
+This is hard coded xpath, only use whn source code is not available or can not access source code
+
+CSS locators
+1) tagname.classname or .classname
+2) tagname#id or #id
+If space in classname, replace with dot .
+
+Webdriver Techniques
+1) Select class for static dropdowns
+Select s=new Select(pass webelement here);
+selectbyvalue("") works with option value
+
+Dynamic xpath creation
+1. contains()
+//input[contains(@class,'actxtbox')] which is //tagname[contains(@attribute,'value')]
+Now say on every page refresh id changes ex test_123, test_345, test_791
+//tagname[contains(@id,'test_')]
+2) starts-with()
+//tagname[starts-with(@attribute,'test_')]
+3)ends-with()
+ex: 2182_test_t, 2983_test_t, 62386891_test_t
+//tagname[ends-with(@attribute,'_test_t')]
+4)text()
+//tagname[contains(text(),'My Account')]
+
+Multiple attribute xpath ex "//input[@value('Log In')][@type('submit')]" where value and type are attributes
+FindElement, here retrieves list of WebElements with <a> tag. 
+List <WebElement> linklist=driver.findElements(By.tagname("a"));
+SOP(linklist.size());
+
+GIT Commands
+git config --global user.name "saurabhsehrawat"
+git config --global user.email "saurabhsehrawat@hotmail.com"
+cd directoryname
+git init
+git add * OR git add filename
+git status (see status of all what has been added to staging successfully or not)
+git commit -m "first commit"     -m for giving message
+git remote add origin https://github.com/saurabhsehrawat/java-selenium.git
+git push -u origin master OR git push origin master/branchname
+//master is default branch
+git clone https://github.com/saurabhsehrawat/java-selenium.git   download whole repository files in a folder where command is passed
+git pull origin master //download latest code, modified files only
+git checkout -b branchname //creates a new branch
+git branch //tells you current branch
+git checkout branchname //switching branch name
+git branch -d branchname //delete branch
+select current branch and merge to master
+git merge master
+
+Absolute Path
+/body/div[2]/div[1]/div[4]/ul/li[2]/a
+parent/child/child....
+//div[@id='initialView']/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/span
+//div[@id='view_container']/div/div/div[2]/div/div[2]/div/div/div/span
+
+Changing Xpath index, say 2 same xpath found and you want to select second one
+ex     (//input[@attribute='value'])[2]
+Used in case of dynamic dropdowns when 2 nodes are found on same web page.
+
+Exceptions:
+NoSuchElement - Xpath or Selector is wrong
+InvalidSelectorException/ ElementNotVisible p - More than one xpath are there, check indexes using chropath
+
+Parent to Child Xpath
+parentxpath childxpath (just give a whitespace between them)
+Passing keyboard data in Selenium
+sendKeys(Keys.ENTER); press enter by keyboard
+
+Counting number of checkboxes on page..
+Find common locator to all checkboxes say type will be checkbox for all checkboxes present
+ex driver.findElements(input[type='checkbox']).....if we use findElement selenium will return first element found.
+
+Assertions..
+Put a check for data which you expect is true or not, if say you expect some result as 6 and your code returns 4, then assertion will fail the testcase.
+you need not to check each and everything on console what your code is returning.
+TestNG framework brought the concept of Assertions
+Add TestNG jar to the project
+Assert.assertFalse(false)
+Assert.assertTrue(true)
+Assert.assertEquals(actual, expected)
+
+Handling Alerts present on webpage
+driver.switchTo().alert(). a)accept() b) dismiss() c() getText()
+
+Autoformat code written in Eclipse
+Ctrl+Shift+F
+
+CamelCase naming convention
+Class name .... ex: Tableexercise
+Variable and Method name... ex: tableExerciseCount, helloWrld()
+
+driver.manage().deleteAllCookies()        delete webpage cookies
+
+Debugging into Eclipse
+Put a breakpoint on a line from where you want to debug code step by step
+Run program as debug
+Step over F6 to go to next line, if you put another breakpoint below code will again stop, resume to execute all code till next breakpoint
+Step Into is used to debug into a method
+
+Convert Array into ArrayList
+String[] name={"Saurabh","Deepti","Komal"};
+List lst=Arrays.asList(name);
+
+Disable ShowNotifications.....
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--disable-notifications");
+//now set driver path
+System.setProperty("webdriver.chrome.driver","path/to/driver/exe");
+WebDriver driver =new ChromeDriver(options);
+
+
+Synchronization in Selenium..
+Implicit Wait, Explicit Wait, Thread.Sleep, Fluent Wait
+
+Implicit: Say you are searching for hotels when click Search it loads and wait for few seconds and then load hotels, so implicit wait is you implicitly
+define that wait for say 5 no of seconds before you throw and error that no elements are found. If search results are found after 2 seconds only, then it will come out and didnt wait till 5 seconds, it keep on listening to DOM (data object model which is your HTML page code), once results displaced within 2 seconds, it continue its execution, 5 seconds is maximum wait time. Implicit wait is defined at global level.
+Say you have to open 100 links in a page, page loading takes few seconds time so declare wait time at global level like wait for 5 seconds everytime before throwing some error. Declare it globally instead declaring each 100 time, it will wait untill specified seconds mentioned and will be applied to all pages till driver instance is active. Implicit wait causes performance issues say loading city must only take 5 seconds in a site but we have defined Implicit Wait as 15 seconds because hotels loading take 15 seconds, so if city loading take more time than 5 seconds our test will pass.
+Explicit Wait we can target specific element but not applkied at global level.
+Thread.sleep is not part of Selenium, its part of Java and it will not listen to DOM, if Thread.sleep is 5 seconds then it will wait for complete 5 seconds.
+
+Implicit Wait: driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);

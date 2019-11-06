@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="profiler.settings.n.profiled.threads.limit">32</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="profiler.settings.obj.alloc.stack.sampling.depth">-1</entry>
+<entry key="profiler.settings.instrument.method.invoke">true</entry>
+<entry key="profiler.settings.instr.scheme">1</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">Threads.**
+abstraction.**
+awt.**
+blockstatic.**
+collection.**
+consinheri.**
+constructors.**
+dynamic.**
+exceptions.**
+inheritance.**
+initblock.**
+io.**
+jdbc.**
+overiding.**
+reflection.**
+serialization.**
+stringhandling.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">Threads.*,&#13;
+abstraction.*,&#13;
+awt.*,&#13;
+blockstatic.*,&#13;
+collection.*,&#13;
+consinheri.*,&#13;
+constructors.*,&#13;
+dynamic.*,&#13;
+exceptions.*,&#13;
+inheritance.*,&#13;
+initblock.*,&#13;
+io.*,&#13;
+jdbc.*,&#13;
+overiding.*,&#13;
+reflection.*,&#13;
+serialization.*,&#13;
+stringhandling.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+<entry key="profiler.settings.sampling.interval">10</entry>
+<entry key="profiler.settings.cpu.profiling.type">0</entry>
+</properties>
